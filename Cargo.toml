@@ -1,0 +1,43 @@
+[package]
+name = "wallclock"
+description = "Datetimes in time zones with arithmetic on the wall clock, as Python's datetime and zoneinfo do it; checked against CPython"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.85"
+license = "MIT"
+repository = "https://github.com/Pho3niX90/wallclock"
+documentation = "https://docs.rs/wallclock"
+readme = "README.md"
+keywords = ["datetime", "timezone", "zoneinfo", "python", "dst"]
+categories = ["date-and-time"]
+include = [
+    "src/**",
+    "tests/**",
+    "examples/**",
+    "docs/**",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "Cargo.toml",
+]
+
+[features]
+# Always compile the IANA time zone database into the binary, instead of
+# only on platforms that have none of their own (Windows).
+bundled = ["jiff/tzdb-bundle-always"]
+
+[dependencies]
+jiff = "1"
+
+[dev-dependencies]
+serde_json = "1"
+
+[lints.rust]
+unsafe_code = "forbid"
+missing_docs = "warn"
+
+[lints.clippy]
+all = { level = "warn", priority = -1 }
+
+[package.metadata.docs.rs]
+all-features = true
