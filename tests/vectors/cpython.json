@@ -9733,8 +9733,6 @@
   ["zone","America/New_York","ok"],
   ["zone","UTC","ok"],
   ["zone","Etc/GMT+5","ok"],
-  ["zone","US/Eastern","ok"],
-  ["zone","GB","ok"],
   ["zone","Etc/UTC","ok"],
   ["zone","europe/madrid","ZoneInfoNotFoundError"],
   ["zone","EUROPE/MADRID","ZoneInfoNotFoundError"],
@@ -9751,7 +9749,6 @@
   ["zone","../UTC","ValueError"],
   ["zone","UTC/..","ValueError"],
   ["zone","Europe/../Europe/Madrid","ValueError"],
-  ["zone","Europe/Madrid\u0000","ValueError"],
   ["zone","Mars/Olympus_Mons","ZoneInfoNotFoundError"],
   ["zone","NoSuchZone","ZoneInfoNotFoundError"]
  ]

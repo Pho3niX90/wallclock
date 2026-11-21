@@ -207,14 +207,15 @@ def main() -> None:
         cases.append(["timedelta", list(triple), answer])
 
     # Zone keys: valid names, links, wrong case, malformed paths and unknown names.
-    # Every key here has the same outcome on Windows and Linux.
+    # Every key here has the same outcome on Windows and Linux. A key with a
+    # NUL in it is left out: CPython's answer for one depends on its version
+    # and platform.
     zone_keys = [
         "Europe/Madrid", "America/New_York", "UTC", "Etc/GMT+5",
-        "US/Eastern", "GB", "Etc/UTC",
+        "Etc/UTC",  # older links such as US/Eastern are an optional package on some systems
         "europe/madrid", "EUROPE/MADRID", "us/eastern",
         "", "/", "/Europe/Madrid", "Europe/Madrid/", "Europe//Madrid",
         ".", "..", "./UTC", "UTC/.", "../UTC", "UTC/..", "Europe/../Europe/Madrid",
-        "Europe/Madrid\x00",
         "Mars/Olympus_Mons", "NoSuchZone",
     ]
     for key in zone_keys:

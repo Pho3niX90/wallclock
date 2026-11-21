@@ -401,8 +401,9 @@ mod tests {
                 "{invalid:?}"
             );
         }
-        assert_eq!(Tz::zone("US/Eastern").unwrap().key(), Some("US/Eastern"));
-        assert_eq!(Tz::zone("GB").unwrap().key(), Some("GB"));
+        // A link keeps the name it was asked for by. (Older links such as
+        // `US/Eastern` are an optional package on some systems, so they are
+        // not assumed here.)
         assert_eq!(Tz::zone("Etc/UTC").unwrap().key(), Some("Etc/UTC"));
 
         use std::collections::HashSet;

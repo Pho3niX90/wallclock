@@ -82,6 +82,10 @@ jobs:
           import json, subprocess
           recorded = json.loads(subprocess.run(["git", "show", "HEAD:tests/vectors/cpython.json"], capture_output=True, text=True, check=True).stdout)
           here = json.load(open("tests/vectors/cpython.json", encoding="utf-8"))
-          assert recorded["cases"] == here["cases"], "the recorded answers differ on this machine"
+          differing = [(a, b) for a, b in zip(recorded["cases"], here["cases"]) if a != b]
+          for a, b in differing[:20]:
+              print("recorded:", a)
+              print("here:    ", b)
+          assert len(recorded["cases"]) == len(here["cases"]) and not differing, "the recorded answers differ on this machine"
           print(len(here["cases"]), "answers are the same here")
           PY
